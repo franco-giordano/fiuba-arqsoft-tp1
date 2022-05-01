@@ -5,9 +5,6 @@ services:
         image: arqsoft/bbox:202201.1
         volumes:
             - ./bbox-config.properties:/opt/bbox/config.properties:ro
-        ports:
-            - "9090:9090"
-            - "9091:9091"
     node:
         build: './app'
     

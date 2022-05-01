@@ -6,7 +6,10 @@
   "scripts": {
     "artillery": "artillery",
     "node": "artillery run root.yaml -e node",
-    "scenario": "./run-scenario.sh"
+    "scenario": "./run-scenario.sh",
+    "up": "docker-compose up --build -d",
+    "down": "docker-compose down",
+    "reload-nginx": "./reload-nginx.sh"
   },
   "author": "",
   "license": "ISC",
