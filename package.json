@@ -8,7 +8,8 @@
     "node": "artillery run root.yaml -e node",
     "scenario": "./run-scenario.sh",
     "up": "docker-compose up --build -d",
-    "down": "docker-compose down",
+    "stop": "docker-compose stop",
+    "finish": "docker-compose down",
     "reload-nginx": "./reload-nginx.sh"
   },
   "author": "",
