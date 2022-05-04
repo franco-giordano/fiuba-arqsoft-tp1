@@ -10,7 +10,8 @@
     "up": "docker-compose up --build -d",
     "stop": "docker-compose stop",
     "finish": "docker-compose down",
-    "reload-nginx": "./reload-nginx.sh"
+    "reload-nginx": "./reload-nginx.sh",
+    "rld": "npm run stop; npm run up"
   },
   "author": "",
   "license": "ISC",

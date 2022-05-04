@@ -5,7 +5,7 @@ const app = express()
 const PORT = 8000
 
 app.get('/', (req, res) => {
-    res.status(200).send('pong')
+    res.status(200).send('Pong')
 })
 
 app.get('/async', async (req, res) => {
@@ -18,6 +18,12 @@ app.get('/sync', async (req, res) => {
     axios.get('http://bbox:9091').then( response => {
         res.status(200).send(`Sync response: ${response.data}`)
     }).catch(e => console.log(`Error: ${e}`))
+})
+
+app.get('/heavy', (req, res) => {
+    let start = new Date()
+    while ((new Date()) - start < 5000) {}
+    res.status(200).send('Heavy response OK')
 })
 
 app.listen(PORT, () => {
