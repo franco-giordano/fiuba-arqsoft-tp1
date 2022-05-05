@@ -26,6 +26,9 @@ config:
       duration: 300   # seconds
       arrivalRate: 1
       rampTo: 8000
+    - name: Reset Line  # useful for resetting Grafana stats
+      duration: 30
+      arrivalRate: 1
 
 scenarios:
   - name: Root (/)
