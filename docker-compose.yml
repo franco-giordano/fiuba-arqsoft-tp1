@@ -34,6 +34,15 @@ services:
             - "80:3000"
         volumes:
             - "grafana_config:/var/lib/grafana"
+        environment:
+            GF_RENDERING_SERVER_URL: http://renderer:8081/render
+            GF_RENDERING_CALLBACK_URL: http://grafana:3000/
+            GF_LOG_FILTERS: rendering:debug
+
+    renderer:
+        image: grafana/grafana-image-renderer:latest
+        ports:
+            - "8081"
 
     cadvisor:
         image: gcr.io/cadvisor/cadvisor:v0.44.0
