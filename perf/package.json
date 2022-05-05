@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "artillery": "artillery",
-    "node": "artillery run root.yaml -e node",
+    "artillery": "NODE_OPTIONS=--max-old-space-size=4096 artillery",
+    "node": "NODE_OPTIONS=--max-old-space-size=4096 artillery run root.yaml -e node",
     "scenario": "./run-scenario.sh"
   },
   "author": "",

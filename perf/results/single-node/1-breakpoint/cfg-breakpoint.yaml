@@ -1,0 +1,23 @@
+config:
+  environments:
+    nodeping:
+      target: 'http://localhost:5555/node'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-node"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: Ramp
+      duration: 300   # max is 5hrs
+      arrivalRate: 10
+      rampTo: 10000
+
+scenarios:
+  - name: Root (/)
+    flow:
+      - get:
+          url: '/'
