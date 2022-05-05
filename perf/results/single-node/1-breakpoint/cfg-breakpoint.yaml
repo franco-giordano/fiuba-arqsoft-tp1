@@ -7,14 +7,25 @@ config:
           host: localhost
           port: 8125
           prefix: "artillery-node"
+    nodeasync:
+      target: 'http://localhost:5555/node/async'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-node"
 
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
-    - name: Ramp
-      duration: 300   # max is 5hrs
-      arrivalRate: 10
-      rampTo: 10000
+    # - name: Ramp      # useful only for /ping
+    #   duration: 300
+    #   arrivalRate: 10
+    #   rampTo: 10000
+    - name: Slow Ramp # used by slow endpoints
+      duration: 300   # seconds
+      arrivalRate: 1
+      rampTo: 8000
 
 scenarios:
   - name: Root (/)
