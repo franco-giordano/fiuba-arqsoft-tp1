@@ -1,0 +1,48 @@
+config:
+  environments:
+    nodeping:
+      target: 'http://localhost:5555/node'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-node"
+    nodeasync:
+      target: 'http://localhost:5555/node/async'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-node"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: Slow Ramp # used by slow endpoints
+      duration: 60   # seconds
+      arrivalRate: 1
+      rampTo: 350
+    - name: Plain Line
+      duration: 360
+      arrivalRate: 350
+    - name: Reduce Line 1
+      duration: 10
+      arrivalRate: 300
+    - name: Reduce Line 2
+      duration: 10
+      arrivalRate: 250
+    - name: Reduce Line 3
+      duration: 10
+      arrivalRate: 150 
+    - name: Reduce Line 4
+      duration: 10
+      arrivalRate: 50
+    - name: Reset Line  # useful for resetting Grafana stats
+      duration: 60
+      arrivalRate: 1
+
+scenarios:
+  - name: Root (/)
+    flow:
+      - get:
+          url: '/'
