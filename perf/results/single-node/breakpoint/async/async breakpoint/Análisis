@@ -1,3 +1,3 @@
-A partir de las 470-500 request aproximadamente empezaron a aparecer errores.
+A partir de las 450-500 request aproximadamente empezaron a aparecer errores.
 
 A partir de 750 empiezan a crecer exponencialmente los errores. A los 800 muere el sistema.
