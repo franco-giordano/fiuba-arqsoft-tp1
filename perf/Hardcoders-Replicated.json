@@ -21,8 +21,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
-  "iteration": 1651955837136,
+  "id": 6,
+  "iteration": 1652905218821,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -31,7 +31,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Graphite",
       "fill": 7,
       "fillGradient": 0,
       "gridPos": {
@@ -81,7 +80,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "B",
-          "target": "scale(alias(stats.gauges.$server.scenariosCreated, 'Count'), 0.1)",
+          "target": "alias(scale(stats.gauges.$server.scenariosCreated, 0.1), 'Count')",
           "textEditor": false
         }
       ],
@@ -123,7 +122,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Graphite",
       "fill": 7,
       "fillGradient": 0,
       "gridPos": {
@@ -173,7 +171,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "B",
-          "target": "scale(alias(stats.gauges.$server.rps.count, 'Count'), 0.1)",
+          "target": "alias(scale(stats.gauges.$server.rps.count, 0.1), 'Count')",
           "textEditor": false
         }
       ],
@@ -429,7 +427,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Graphite",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -437,6 +434,234 @@
         "w": 13,
         "x": 0,
         "y": 29
+      },
+      "height": "250px",
+      "hiddenSeries": false,
+      "hideTimeOverride": false,
+      "id": 19,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": 250,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.4.6",
+      "pointradius": 5,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "asPercent(stats.gauges.cadvisor.tp1_node_1.memory_usage, 1952000000)",
+          "yaxis": 1
+        },
+        {
+          "alias": "stats.gauges.cadvisor.tp1_gunicorn_1.rx_errors",
+          "yaxis": 2
+        },
+        {
+          "alias": "stats.gauges.cadvisor.tp1_gunicorn_1.tx_errors",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "tjHOFeQnk"
+          },
+          "hide": true,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(removeBelowValue(asPercent(derivative(keepLastValue(stats.gauges.cadvisor.tp1_node_1.cpu_cumulative_usage, 100)), 10000000000), 0.0001), 'CPU')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "tjHOFeQnk"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(removeBelowValue(asPercent(derivative(keepLastValue(averageSeries(stats.gauges.cadvisor.tp1_node_*.cpu_cumulative_usage), 100)), 10000000000), 0.0001), 'CPU')",
+          "textEditor": true
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "CPU Usage Average Node",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:2415",
+          "format": "percent",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:2416",
+          "format": "Bps",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "Memory": "#EAB839"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 11,
+        "x": 13,
+        "y": 29
+      },
+      "height": "250px",
+      "hiddenSeries": false,
+      "hideTimeOverride": false,
+      "id": 9,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": 250,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.4.6",
+      "pointradius": 5,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "asPercent(stats.gauges.cadvisor.tp1_node_1.memory_usage, 1952000000)",
+          "yaxis": 1
+        },
+        {
+          "alias": "stats.gauges.cadvisor.tp1_gunicorn_1.rx_errors",
+          "yaxis": 2
+        },
+        {
+          "alias": "stats.gauges.cadvisor.tp1_gunicorn_1.tx_errors",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "tjHOFeQnk"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(averageSeries(stats.gauges.cadvisor.tp1_node_*.memory_working_set), 'Memory')",
+          "textEditor": true
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "Memory Consumption Average Node ",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:2473",
+          "format": "bytes",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:2474",
+          "format": "Bps",
+          "logBase": 1,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "Memory": "#EAB839"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Graphite",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 13,
+        "x": 0,
+        "y": 36
       },
       "height": "250px",
       "hiddenSeries": false,
@@ -545,12 +770,12 @@
         "h": 7,
         "w": 11,
         "x": 13,
-        "y": 29
+        "y": 36
       },
       "height": "250px",
       "hiddenSeries": false,
       "hideTimeOverride": false,
-      "id": 9,
+      "id": 20,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -646,6 +871,439 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 13,
+        "x": 0,
+        "y": 43
+      },
+      "height": "250px",
+      "hiddenSeries": false,
+      "hideTimeOverride": false,
+      "id": 15,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": 250,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.4.6",
+      "pointradius": 5,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "asPercent(stats.gauges.cadvisor.tp1_node_1.memory_usage, 1952000000)",
+          "yaxis": 1
+        },
+        {
+          "alias": "stats.gauges.cadvisor.tp1_gunicorn_1.rx_errors",
+          "yaxis": 2
+        },
+        {
+          "alias": "stats.gauges.cadvisor.tp1_gunicorn_1.tx_errors",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "tjHOFeQnk"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(removeBelowValue(asPercent(derivative(keepLastValue(stats.gauges.cadvisor.tp1_node_2.cpu_cumulative_usage, 100)), 10000000000), 0.0001), 'CPU')",
+          "textEditor": false
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "CPU Usage Node 2",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:2415",
+          "format": "percent",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:2416",
+          "format": "Bps",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "Memory": "#EAB839"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 11,
+        "x": 13,
+        "y": 43
+      },
+      "height": "250px",
+      "hiddenSeries": false,
+      "hideTimeOverride": false,
+      "id": 16,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": 250,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.4.6",
+      "pointradius": 5,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:177",
+          "alias": "asPercent(stats.gauges.cadvisor.tp1_node_1.memory_usage, 1952000000)",
+          "yaxis": 1
+        },
+        {
+          "$$hashKey": "object:178",
+          "alias": "stats.gauges.cadvisor.tp1_gunicorn_1.rx_errors",
+          "yaxis": 2
+        },
+        {
+          "$$hashKey": "object:179",
+          "alias": "stats.gauges.cadvisor.tp1_gunicorn_1.tx_errors",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "tjHOFeQnk"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(stats.gauges.cadvisor.tp1_node_2.memory_working_set, 'Memory')"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "Memory Consumption Node 2",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:2473",
+          "format": "bytes",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:2474",
+          "format": "Bps",
+          "logBase": 1,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "Memory": "#EAB839"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 13,
+        "x": 0,
+        "y": 50
+      },
+      "height": "250px",
+      "hiddenSeries": false,
+      "hideTimeOverride": false,
+      "id": 17,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": 250,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.4.6",
+      "pointradius": 5,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "asPercent(stats.gauges.cadvisor.tp1_node_1.memory_usage, 1952000000)",
+          "yaxis": 1
+        },
+        {
+          "alias": "stats.gauges.cadvisor.tp1_gunicorn_1.rx_errors",
+          "yaxis": 2
+        },
+        {
+          "alias": "stats.gauges.cadvisor.tp1_gunicorn_1.tx_errors",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "tjHOFeQnk"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(removeBelowValue(asPercent(derivative(keepLastValue(stats.gauges.cadvisor.tp1_node_3.cpu_cumulative_usage, 100)), 10000000000), 0.0001), 'CPU')",
+          "textEditor": false
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "CPU Usage Node 3",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:2415",
+          "format": "percent",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:2416",
+          "format": "Bps",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "Memory": "#EAB839"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 11,
+        "x": 13,
+        "y": 50
+      },
+      "height": "250px",
+      "hiddenSeries": false,
+      "hideTimeOverride": false,
+      "id": 18,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": 250,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.4.6",
+      "pointradius": 5,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "asPercent(stats.gauges.cadvisor.tp1_node_1.memory_usage, 1952000000)",
+          "yaxis": 1
+        },
+        {
+          "alias": "stats.gauges.cadvisor.tp1_gunicorn_1.rx_errors",
+          "yaxis": 2
+        },
+        {
+          "alias": "stats.gauges.cadvisor.tp1_gunicorn_1.tx_errors",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "tjHOFeQnk"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(stats.gauges.cadvisor.tp1_node_3.memory_working_set, 'Memory')"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "Memory Consumption Node 3",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:2473",
+          "format": "bytes",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:2474",
+          "format": "Bps",
+          "logBase": 1,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "Memory": "#EAB839"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "Graphite",
       "fill": 1,
       "fillGradient": 0,
@@ -653,7 +1311,7 @@
         "h": 7,
         "w": 13,
         "x": 0,
-        "y": 36
+        "y": 57
       },
       "height": "250px",
       "hiddenSeries": false,
@@ -762,7 +1420,7 @@
         "h": 7,
         "w": 11,
         "x": 13,
-        "y": 36
+        "y": 57
       },
       "height": "250px",
       "hiddenSeries": false,
@@ -870,7 +1528,7 @@
         "h": 7,
         "w": 13,
         "x": 0,
-        "y": 43
+        "y": 64
       },
       "height": "250px",
       "hiddenSeries": false,
@@ -979,7 +1637,7 @@
         "h": 7,
         "w": 11,
         "x": 13,
-        "y": 43
+        "y": 64
       },
       "height": "250px",
       "hiddenSeries": false,
@@ -1190,8 +1848,8 @@
     ]
   },
   "timezone": "",
-  "title": "Hardcoders",
-  "uid": "arxIPammk",
+  "title": "Hardcoders-Replicated",
+  "uid": "arxIPammka",
   "version": 6,
   "weekStart": ""
 }
