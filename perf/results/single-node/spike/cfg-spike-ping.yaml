@@ -1,0 +1,59 @@
+config:
+  environments:
+    ping:
+      target: 'http://localhost:5555/node'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-node"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: Slow Ramp
+      duration: 10    # seconds
+      arrivalRate: 1
+      rampTo: 300
+    - name: Plain Line
+      duration: 45
+      arrivalRate: 300
+    - name: Soft Spike
+      duration: 5     # seconds
+      arrivalRate: 300
+      rampTo: 500
+    - name: Soft Spike Plateau
+      duration: 25
+      arrivalRate: 500
+    - name: Cooldown 1
+      duration: 100
+      arrivalRate: 300
+    - name: Strong Spike
+      duration: 5     # seconds
+      arrivalRate: 300
+      rampTo: 650
+    - name: Strong Spike Plateau
+      duration: 25
+      arrivalRate: 650
+    - name: Cooldown 2
+      duration: 70
+      arrivalRate: 300
+    - name: Strong Long Spike
+      duration: 5     # seconds
+      arrivalRate: 300
+      rampTo: 650
+    - name: Strong Long Spike Plateau
+      duration: 60
+      arrivalRate: 650
+    - name: Cooldown 3
+      duration: 100
+      arrivalRate: 300
+    - name: Reset Line
+      duration: 60
+      arrivalRate: 1
+
+scenarios:
+  - name: Root (/)
+    flow:
+      - get:
+          url: '/'

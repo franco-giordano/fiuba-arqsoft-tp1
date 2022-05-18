@@ -1,0 +1,38 @@
+config:
+  environments:
+    sync:
+      target: 'http://localhost:5555/node/sync'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-node"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: Slow Ramp # used by slow endpoints
+      duration: 45   # seconds
+      arrivalRate: 1
+      rampTo: 6 # 7
+    - name: Plain Line
+      duration: 100
+      arrivalRate: 6 # 
+    - name: Heavy Plain Line
+      duration: 600
+      arrivalRate: 7
+    - name: Reduce Line 1
+      duration: 10
+      arrivalRate: 5
+    - name: Reduce Line 2
+      duration: 10
+      arrivalRate: 3
+    - name: Reset Line  # useful for resetting Grafana stats
+      duration: 600
+      arrivalRate: 1
+
+scenarios:
+  - name: Root (/)
+    flow:
+      - get:
+          url: '/'
