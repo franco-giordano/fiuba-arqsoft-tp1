@@ -1,0 +1,58 @@
+config:
+  environments:
+    async:
+      target: 'http://localhost:5555/node/async'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-node"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: Ramp
+      duration: 60   # seconds
+      arrivalRate: 1
+      rampTo: 300
+    - name: RampSpike
+      duration: 20
+      arrivalRate: 300
+      rampTo: 600
+    - name: Spike
+      duration: 30
+      arrivalRate: 600
+    - name: Ramp
+      duration: 10
+      arrivalRate: 500
+    - name: Ramp
+      duration: 10
+      arrivalRate: 400
+    - name: Plain
+      duration: 180
+      arrivalRate: 300
+    - name: RampSpike
+      duration: 20
+      arrivalRate: 300
+      rampTo: 800
+    - name: Spike
+      duration: 30
+      arrivalRate: 800
+    - name: Ramp
+      duration: 10
+      arrivalRate: 600
+    - name: Ramp
+      duration: 10
+      arrivalRate: 400
+    - name: Plain
+      duration: 240
+      arrivalRate: 300
+    - name: Reset Line  # useful for resetting Grafana stats
+      duration: 60
+      arrivalRate: 1
+
+scenarios:
+  - name: Root (/)
+    flow:
+      - get:
+          url: '/'

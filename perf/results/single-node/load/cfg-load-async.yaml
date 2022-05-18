@@ -1,13 +1,6 @@
 config:
   environments:
-    nodeping:
-      target: 'http://localhost:5555/node'
-      plugins:
-        statsd:
-          host: localhost
-          port: 8125
-          prefix: "artillery-node"
-    nodeasync:
+    async:
       target: 'http://localhost:5555/node/async'
       plugins:
         statsd:
@@ -18,13 +11,13 @@ config:
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
-    - name: Slow Ramp # used by slow endpoints
+    - name: Ramp
       duration: 60   # seconds
       arrivalRate: 1
-      rampTo: 350
+      rampTo: 400
     - name: Plain Line
       duration: 360
-      arrivalRate: 350
+      arrivalRate: 400
     - name: Reduce Line 1
       duration: 10
       arrivalRate: 300
