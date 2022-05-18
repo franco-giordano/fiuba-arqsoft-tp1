@@ -31,6 +31,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "Graphite",
       "fill": 7,
       "fillGradient": 0,
       "gridPos": {
@@ -122,6 +123,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "Graphite",
       "fill": 7,
       "fillGradient": 0,
       "gridPos": {
@@ -427,6 +429,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "Graphite",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -546,6 +549,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "Graphite",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -871,6 +875,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "Graphite",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -979,6 +984,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "Graphite",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1089,6 +1095,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "Graphite",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1197,6 +1204,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "Graphite",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
