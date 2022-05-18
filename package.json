@@ -12,7 +12,8 @@
     "stop": "docker-compose stop",
     "finish": "docker-compose down",
     "reload-nginx": "./reload-nginx.sh",
-    "rld": "npm run stop; npm run up"
+    "rld": "npm run stop; npm run up",
+    "rld-scale": "npm run stop; npm run up-scale"
   },
   "author": "",
   "license": "ISC",
